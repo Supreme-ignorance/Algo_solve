@@ -23,9 +23,9 @@ public class Main {
 		checked = new boolean[n][n];
 		
 		for (int r = 0; r < n; r++) {
-			char[] input = br.readLine().toCharArray();
+			String input = br.readLine();
 			for (int c = 0; c < n; c++) {
-				if (input[c] == '0') checked[r][c] = true;
+				if (input.charAt(c) == '0') checked[r][c] = true;
 			}
 		}
 		
