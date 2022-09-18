@@ -15,7 +15,7 @@ public class Main {
 	
 	static char[][] map;
 	static Queue<int[]> Q = new LinkedList<>();
-	static Queue<int[]> eve = new LinkedList<>();
+	static boolean[][][][] visited;
 	
 	static int[] initialR = new int[2];
 	static int[] initialB = new int[2];
@@ -30,6 +30,7 @@ public class Main {
 		maxMove = Math.max(n, m) - 2;
 		
 		map = new char[n][m];
+		visited = new boolean[n][m][n][m];
 		
 		for (int r = 0; r < n; r++) {
 			char[] temp = br.readLine().toCharArray();
@@ -40,7 +41,7 @@ public class Main {
 		}
 		
 		Q.add(new int[] {initialR[0], initialR[1], initialB[0], initialB[1], 0});
-		eve.add(new int[] {initialR[0], initialR[1], initialB[0], initialB[1], 0});
+		visited[initialR[0]][initialR[1]][initialB[0]][initialB[1]] = true;
 		bfs(0);
 	}
 	
@@ -62,9 +63,7 @@ public class Main {
 					return;
 				}
 			}
-			
-			eve.poll();
-			eve.add(Q.poll());
+			Q.poll();
 		}
 		
 		bfs (tryNum);
@@ -118,12 +117,10 @@ public class Main {
 				Bc -= dc[dir];
 			}
 		}
-		
-		if (Rr != temp[0] || Rc != temp[1] || Br != temp[2] || Bc != temp[3]) {
-			int[] tempeve = eve.peek();
-			if (Rr != tempeve[0] || Rc != tempeve[1] || Br != tempeve[2] || Bc != tempeve[3]) {
-				Q.add(new int[] {Rr, Rc, Br, Bc, temp[4] + 1});
-			}
+
+		if (!visited[Rr][Rc][Br][Bc]) {
+			visited[Rr][Rc][Br][Bc] = true;
+			Q.add(new int[] { Rr, Rc, Br, Bc, temp[4] + 1 });
 		}
 	}
 	
