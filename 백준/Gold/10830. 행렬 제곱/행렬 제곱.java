@@ -62,7 +62,7 @@ public class Main {
 		}
 		
 		if (num % 2 == 1) {
-			map.put(num, matrixMultiplication(exponentiation(num - 1), exponentiation(1)));
+			map.put(num, matrixMultiplication(exponentiation(num / 2), exponentiation(num / 2 + 1)));
 		} else {
 			map.put(num, matrixMultiplication(exponentiation(num / 2), exponentiation(num / 2)));
 		}
