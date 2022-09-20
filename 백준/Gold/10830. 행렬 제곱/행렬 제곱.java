@@ -12,8 +12,8 @@ public class Main {
 	static Map<Long, int[][]> map = new HashMap<>();
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		
 		StringTokenizer st = new StringTokenizer(br.readLine());
+		StringBuilder sb = new StringBuilder();
 		
 		n = Integer.parseInt(st.nextToken());
 		b = Long.parseLong(st.nextToken());
@@ -31,10 +31,11 @@ public class Main {
 		
 		for (int r = 0; r < n; r++) {
 			for (int c = 0; c < n; c++) {
-				System.out.print(arr[r][c] + " ");
+				sb.append(arr[r][c] + " ");
 			}
-			System.out.println();
+			sb.append("\n");
 		}
+		System.out.println(sb);
 	}
 	
 	static int[][] matrixMultiplication(int[][] A, int[][] B) {
