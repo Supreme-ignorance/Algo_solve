@@ -22,7 +22,7 @@ public class Main {
 		for (int r = 0; r < n; r++) {
 			st = new StringTokenizer(br.readLine());
 			for (int c = 0; c < n; c++) {
-				arr[r][c] = Integer.parseInt(st.nextToken()) % 1000;
+				arr[r][c] = Integer.parseInt(st.nextToken());
 			}
 		}
 		map.put((long) 1, arr);
@@ -31,7 +31,7 @@ public class Main {
 		
 		for (int r = 0; r < n; r++) {
 			for (int c = 0; c < n; c++) {
-				sb.append(arr[r][c] + " ");
+				sb.append(arr[r][c] % 1000 + " ");
 			}
 			sb.append("\n");
 		}
@@ -62,11 +62,8 @@ public class Main {
 			return map.get(num);
 		}
 		
-		if (num % 2 == 1) {
-			map.put(num, matrixMultiplication(exponentiation(num / 2), exponentiation(num / 2 + 1)));
-		} else {
-			map.put(num, matrixMultiplication(exponentiation(num / 2), exponentiation(num / 2)));
-		}
+		long half = num / 2;
+		map.put(num, matrixMultiplication(exponentiation(half), exponentiation(half + num % 2)));
 		
 		return map.get(num);
 	}
