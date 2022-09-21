@@ -28,8 +28,17 @@ public class Main {
 			} else {
 				res = W(a, b, c);				
 			}
-			System.out.printf("w(%d, %d, %d) = %d\n", a, b, c, res);
+			sb.append("w(");
+			sb.append(a);
+			sb.append(", ");
+			sb.append(b);
+			sb.append(", ");
+			sb.append(c);
+			sb.append(") = ");
+			sb.append(res);
+			sb.append("\n");
 		}
+		System.out.println(sb);
 	}
 	
 	static int W(int i, int j, int k) {
