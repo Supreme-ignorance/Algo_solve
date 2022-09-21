@@ -1,15 +1,21 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
 	static int[][][] dp = new int[21][21][21];
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
 		while (true) {
 			int a, b, c;
 			
-			a = sc.nextInt();
-			b = sc.nextInt();
-			c = sc.nextInt();
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			
+			a = Integer.valueOf(st.nextToken());
+			b = Integer.valueOf(st.nextToken());
+			c = Integer.valueOf(st.nextToken());
 			
 			if (a == -1 && b == -1 && c == -1) break;
 			
@@ -22,7 +28,6 @@ public class Main {
 			} else {
 				res = W(a, b, c);				
 			}
-			
 			System.out.printf("w(%d, %d, %d) = %d\n", a, b, c, res);
 		}
 	}
@@ -31,12 +36,11 @@ public class Main {
 		if (dp[i][j][k] != 0) return dp[i][j][k];
 		
 		if (i <= 0 || j <= 0 || k <= 0) {
-			dp[i][j][k] = 1;
+			return dp[i][j][k] = 1;
 		}  else if (i < j && j < k) {
-			dp[i][j][k] = W(i, j, k-1) + W(i, j-1, k-1) - W(i, j-1, k);
+			return dp[i][j][k] = W(i, j, k-1) + W(i, j-1, k-1) - W(i, j-1, k);
 		} else {
-			dp[i][j][k] = W(i-1, j, k) + W(i-1, j-1, k) + W(i-1, j, k-1) - W(i-1, j-1, k-1);
+			return dp[i][j][k] = W(i-1, j, k) + W(i-1, j-1, k) + W(i-1, j, k-1) - W(i-1, j-1, k-1);
 		}
-		return dp[i][j][k];
 	}
 }
