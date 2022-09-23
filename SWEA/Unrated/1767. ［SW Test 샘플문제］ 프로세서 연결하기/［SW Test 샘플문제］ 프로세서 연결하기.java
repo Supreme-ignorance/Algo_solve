@@ -39,26 +39,20 @@ public class Solution {
 
 			cs = cores.size();
 
-			makeProsessor(0, 0);
+			makeProsessor(0, 0, 0);
 
 			System.out.println("#" + t + " " + res);
 		}
 	}
 
-	static void makeProsessor(int idx, int core) {
+	static void makeProsessor(int idx, int core, int leng) {
+		int expect = cs - idx + core;
+		if (expect < resCore || (expect == resCore && leng > res)) return;
 		if (idx == cs && resCore <= core) {
-			int cnt = 0;
 
-			for (int r = 0; r < n; r++) {
-				for (int c = 0; c < n; c++) {
-					if (map[r][c] == 2)
-						cnt++;
-				}
-			}
-
-			if (resCore < core || (resCore == core && res > cnt)) {
+			if (resCore < core || (resCore == core && res > leng)) {
 				resCore = core;
-				res = cnt;
+				res = leng;
 			}
 			return;
 		}
@@ -68,22 +62,23 @@ public class Solution {
 
 		for (int i = 0; i < 4; i++) {
 			if (islink(cores.get(idx)[0], cores.get(idx)[1], i)) {
-				linkcore(cores.get(idx)[0], cores.get(idx)[1], i, 2);
-				makeProsessor(idx + 1, core + 1);
+				int more = linkcore(cores.get(idx)[0], cores.get(idx)[1], i, 2);
+				makeProsessor(idx + 1, core + 1, leng + more);
 				linkcore(cores.get(idx)[0], cores.get(idx)[1], i, 0);
 			}
 		}
-		makeProsessor(idx + 1, core);
+		makeProsessor(idx + 1, core, leng);
 	}
 
-	static void linkcore(int r, int c, int dir, int putPick) {
+	static int linkcore(int r, int c, int dir, int putPick) {
+		int cnt = 0;
 		while (true) {
 			r += dr[dir];
 			c += dc[dir];
 
 			if (r < 0 || r >= n || c < 0 || c >= n)
-				return;
-
+				return cnt;
+			cnt++;
 			map[r][c] = putPick;
 		}
 	}
