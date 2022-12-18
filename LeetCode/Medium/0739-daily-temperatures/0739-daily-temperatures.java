@@ -9,14 +9,14 @@ class Solution {
                 int target = temperatures[i];
                 dp[target] = i;
 
-                int min = Integer.MAX_VALUE;
+                int min = 100001;
                 for (int j = target + 1; j < 101; j++){
                     if (i < dp[j] && min > dp[j]){
                         min = dp[j];
                     }
                 }
 
-                ans[i] = min == Integer.MAX_VALUE ? 0 : min - i;
+                ans[i] = min == 100001 ? 0 : min - i;
             }
 
             return ans;
