@@ -34,8 +34,7 @@ public class Main {
                 map[r][c] = Integer.parseInt(st.nextToken());
             }
         }
-        
-        // 중복 가능이니까 플루이드 워셜이야~
+
         for(int k = 0; k < N; k++){
             for(int i = 0; i < N; i++){
                 for(int j = 0; j < N; j++){
