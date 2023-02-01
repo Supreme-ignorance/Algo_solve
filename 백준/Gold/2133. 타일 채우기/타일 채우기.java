@@ -12,6 +12,7 @@ public class Main {
         arr[0] = 1;
         arr[1] = 0;
         arr[2] = 3;
+        arr[3] = 0;
 
         for (int i = 4; i <= n; i++){
             arr[i] = 4 * arr[i - 2] - arr[i - 4];
