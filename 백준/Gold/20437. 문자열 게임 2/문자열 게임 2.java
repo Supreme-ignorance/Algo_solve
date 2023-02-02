@@ -10,18 +10,10 @@ public class Main {
 
         int T = Integer.parseInt(br.readLine());
 
-        String[] inputs = new String[T];
-        int[] nums = new int[T];
-
         for (int t = 0; t < T; t++){
-            inputs[t] = br.readLine();
-            nums[t] = Integer.parseInt(br.readLine());
-        }
+            char[] input = br.readLine().toCharArray();
 
-        for (int t = 0; t < T; t++){
-            char[] input = inputs[t].toCharArray();
-
-            int n = nums[t];
+            int n = Integer.parseInt(br.readLine());
             
             int min = 10001;
             int max = -1;
