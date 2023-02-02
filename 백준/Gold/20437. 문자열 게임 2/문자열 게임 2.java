@@ -23,11 +23,6 @@ public class Main {
 
             int n = nums[t];
             
-            if (n == 1){
-                System.out.println(1 + " " + 1);
-                continue;
-            }
-            
             int min = 10001;
             int max = -1;
 
@@ -39,14 +34,15 @@ public class Main {
 
             for (int i = 0; i < input.length; i++){
                 int cur = input[i] - 'a';
-                if (counter[cur].size() + 1 == n){
+                counter[cur].add(i);
+                
+                if (counter[cur].size() == n){
                     int front = counter[cur].poll();
 
                     min = min > i - front + 1? i - front + 1:min;
                     max = max < i - front + 1? i - front + 1:max;
                 }
 
-                counter[cur].add(i);
             }
 
             if (max != -1) {
