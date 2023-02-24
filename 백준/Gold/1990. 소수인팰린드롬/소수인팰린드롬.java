@@ -42,25 +42,13 @@ public class Main {
     }
 
     private static boolean PalindromeCheck(int num) {
-        int length = (int) Math.log10(num);
-
-        int l = (int) Math.pow(10, length);
-        int r = 1;
-
-        while (l >= r){
-
-            int left = num / l % 10;
-            int right = num / r % 10;
-
-            if (left != right){
-                return false;
-            }
-
-            l /= 10;
-            r *= 10;
-        }
-
-        return true;
+    	int p = 0;
+    	for(int i = num; i > 0; i /= 10){
+    		p *= 10;
+    		p += i % 10;
+    	}
+    	if(p == num) return true;
+    	return false;
     }
 
 }
